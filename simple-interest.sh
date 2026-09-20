@@ -14,7 +14,7 @@
 # r, annual rate of interest
 
 # Output:
-# simple interest = p*t*r
+# simple interest = p*t*r / 100
 
 echo "Enter the principal:"
 read p
@@ -23,6 +23,8 @@ read r
 echo "Enter time period in years:"
 read t
 
-s=`expr $p \* $t \* $r / 100`
+# Using bc to handle decimal/floating-point arithmetic accurately
+s=$(echo "scale=2; ($p * $t * $r) / 100" | bc)
+
 echo "The simple interest is: "
-echo $s
+echo "$s"
