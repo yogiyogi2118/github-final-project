@@ -1,23 +1,20 @@
-#!/bin/bash
-# This script calculates simple interest given principal,
-# annual rate of interest and time period in years.
+def calculate_simple_interest(principal, rate, time):
+    """
+    Calculates simple interest.
+    Principal: Initial amount
+    Rate: Annual interest rate (in percentage)
+    Time: Time period in years
+    """
+    interest = (principal * rate * time) / 100
+    total_amount = principal + interest
+    return interest, total_amount
 
-# Input:
-# p, principal amount
-# t, time period in years
-# r, annual rate of interest
-
-# Output:
-# simple interest = p * t * r / 100
-
-echo "Enter the principal:"
-read p
-echo "Enter rate of interest per year:"
-read r
-echo "Enter time period in years:"
-read t
-
-# Using bc to handle decimal/floating-point arithmetic accurately
-s=$(echo "scale=2; ($p * $t * $r) / 100" | bc)
-
-echo "The simple interest is: $s"
+# Example usage:
+if __name__ == "__main__":
+    P = float(input("Enter principal amount: "))
+    R = float(input("Enter annual interest rate (%): "))
+    T = float(input("Enter time period (years): "))
+    
+    interest, total = calculate_simple_interest(P, R, T)
+    print(f"Simple Interest: {interest}")
+    print(f"Total Amount: {total}")
